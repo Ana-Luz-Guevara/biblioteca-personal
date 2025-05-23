@@ -20,8 +20,8 @@ formulario.addEventListener("submit", async (e) => {
     };
 
     const url = libroActualId 
-      ? `http://localhost:3050/api/libros/${libroActualId}`
-      : "http://localhost:3050/api/libros";
+      ? `http://localhost:3500/api/libros/${libroActualId}`
+      : "http://localhost:3500/api/libros";
       
     const method = libroActualId ? "PUT" : "POST";
 
@@ -50,7 +50,7 @@ formulario.addEventListener("submit", async (e) => {
 // Obtener libros
 async function obtenerLibros() {
   try {
-    const response = await fetch("http://localhost:3050/api/libros");
+    const response = await fetch("http://localhost:3500/api/libros");
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -94,7 +94,7 @@ function mostrarLibros(libros) {
 // Función para editar libro
 window.editarLibro = async function(id) {
   try {
-    const response = await fetch(`http://localhost:3050/api/libros/${id}`);
+    const response = await fetch(`http://localhost:3500/api/libros/${id}`);
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     
     const libro = await response.json();
@@ -124,7 +124,7 @@ window.eliminarLibro = async function(id) {
   if (!confirm("¿Estás seguro de eliminar este libro?")) return;
   
   try {
-    const response = await fetch(`http://localhost:3050/api/libros/${id}`, {
+    const response = await fetch(`http://localhost:3500/api/libros/${id}`, {
       method: "DELETE"
     });
     

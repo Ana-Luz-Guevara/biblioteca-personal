@@ -13,4 +13,4 @@ RUN npm install -g serve
 EXPOSE 5000
 
 # Servir el HTML
-CMD ["serve", ".", "-l", "5000"]
+CMD ["serve", ".", "-l", "5500"]

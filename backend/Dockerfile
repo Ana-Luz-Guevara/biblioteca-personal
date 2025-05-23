@@ -11,5 +11,5 @@ RUN npm ci --only=production  # Usa 'npm ci' en lugar de 'npm install' para buil
 # 3. Copia el resto del código (esto evita reinstalar dependencias si solo cambias el código)
 COPY . .
 
-EXPOSE 3000
+EXPOSE 3500
 CMD ["node", "server.js"]

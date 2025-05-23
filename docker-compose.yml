@@ -5,7 +5,7 @@ services:
     build:
       context: ./backend
     ports:
-      - "3050:3050"
+      - "3500:3500"
     volumes:
       - ./backend:/app
     restart: always
@@ -14,7 +14,7 @@ services:
     build:
       context: ./frontend
     ports:
-      - "5000:5000"
+      - "5500:5500"
     volumes:
       - ./frontend:/app
     restart: always
