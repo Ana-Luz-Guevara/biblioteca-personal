@@ -1,2 +1,25 @@
+# Node.js
 node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
 
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de entorno
+.env
+
+# Visual Studio Code
+.vscode/
+
+# Docker
+docker-compose.override.yml
+
+# Otros
+*.swp
+*.swo

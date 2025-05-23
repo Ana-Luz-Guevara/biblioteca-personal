@@ -1,20 +1,15 @@
-# Usamos Node.js oficial como base
-FROM node:18
+FROM node:18-alpine
 
-# Establecemos el directorio de trabajo
 WORKDIR /app
 
-# Copiamos los archivos de configuración
-COPY package*.json ./
+# 1. Copia SOLO los archivos de dependencias PRIMERO (para aprovechar caché de Docker)
+COPY package.json package-lock.json ./
 
-# Instalamos dependencias
-RUN npm install
+# 2. Instala dependencias DE PRODUCCIÓN (más ligero)
+RUN npm ci --only=production  # Usa 'npm ci' en lugar de 'npm install' para builds confiables
 
-# Copiamos el resto del código
+# 3. Copia el resto del código (esto evita reinstalar dependencias si solo cambias el código)
 COPY . .
 
-# Exponemos el puerto del backend (ajústalo si usas otro)
 EXPOSE 3000
-
-# Comando para arrancar el servidor
 CMD ["node", "server.js"]
