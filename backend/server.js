@@ -1,0 +1,33 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const cors = require('cors');
+const app = express();
+
+// Configuración
+app.use(cors());
+app.use(express.json());
+
+// Conexión a MongoDB simplificada
+mongoose.connect('mongodb://localhost:27017/bibliotecaPersonal')
+  .then(() => console.log('✅ MongoDB conectado'))
+  .catch(err => console.error('❌ Error de MongoDB:', err));
+
+// Servir archivos estáticos del frontend
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Rutas API
+const librosRouter = require('./routes/libros');
+app.use('/api/libros', librosRouter);
+
+// Todas las demás rutas van al frontend
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
+// Iniciar servidor
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor: http://localhost:${PORT}`);
+  console.log(`📚 API: http://localhost:${PORT}/api/libros`);
+});

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Biblioteca</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Mi Biblioteca Personal</h1>
+
+    <form id="formulario">
+      <div class="form-group">
+        <input type="text" id="titulo" placeholder=" " required>
+        <label for="titulo">Título</label>
+      </div>
+      
+      <div class="form-group">
+        <input type="text" id="autor" placeholder=" " required>
+        <label for="autor">Autor</label>
+      </div>
+      
+      <div class="form-group">
+        <input type="number" id="año" placeholder=" ">
+        <label for="año">Año</label>
+      </div>
+      
+      <div class="form-group">
+        <input type="text" id="genero" placeholder=" ">
+        <label for="genero">Género</label>
+      </div>
+      
+      <div class="form-group">
+        <select id="estado" required>
+          <option value="" disabled selected></option>
+          <option value="pendiente">📖 Pendiente</option>
+          <option value="leyendo">👓 Leyendo</option>
+          <option value="leído">✅ Leído</option>
+        </select>
+        <label for="estado">Estado</label>
+      </div>
+      
+      <button type="submit" id="btnAgregar">✨ Agregar Libro</button>
+      <button type="button" id="btnCancelar" class="hidden">❌ Cancelar</button>
+      <input type="hidden" id="libroId">
+    </form>
+
+    <div id="listaLibros" class="libros-container"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
