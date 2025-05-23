@@ -8,8 +8,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MongoDB simplificada
-mongoose.connect('mongodb://localhost:27017/bibliotecaPersonal')
+// Conexión a MongoDB usando variable de entorno
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/bibliotecaPersonal';
+mongoose.connect(mongoURI)
   .then(() => console.log('✅ MongoDB conectado'))
   .catch(err => console.error('❌ Error de MongoDB:', err));
 
