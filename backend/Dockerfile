@@ -2,13 +2,13 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# 1. Copia SOLO los archivos de dependencias PRIMERO (para aprovechar caché de Docker)
-COPY package.json package-lock.json ./
+# Copia los archivos de dependencias
+COPY package*.json ./
 
-# 2. Instala dependencias DE PRODUCCIÓN (más ligero)
-RUN npm ci --only=production  # Usa 'npm ci' en lugar de 'npm install' para builds confiables
+# Instala todas las dependencias (incluyendo las de desarrollo)
+RUN npm install
 
-# 3. Copia el resto del código (esto evita reinstalar dependencias si solo cambias el código)
+# Copia el resto del código
 COPY . .
 
 EXPOSE 3500

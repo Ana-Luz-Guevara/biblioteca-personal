@@ -13,8 +13,6 @@ services:
       context: ./backend
     ports:
       - "3500:3500"
-    volumes:
-      - ./backend:/app
     environment:
       - MONGODB_URI=mongodb://mongodb:27017/bibliotecaPersonal
     depends_on:
@@ -26,8 +24,6 @@ services:
       context: ./frontend
     ports:
       - "5500:5500"
-    volumes:
-      - ./frontend:/app
     depends_on:
       - backend
     restart: always
