@@ -1,3 +1,5 @@
+const API_URL = 'http://172.23.235.80:3500';
+
 const formulario = document.getElementById("formulario");
 const listaLibros = document.getElementById("listaLibros");
 const btnSubmit = document.querySelector("button[type='submit']");
@@ -20,8 +22,8 @@ formulario.addEventListener("submit", async (e) => {
     };
 
     const url = libroActualId 
-      ? `http://localhost:3500/api/libros/${libroActualId}`
-      : "http://localhost:3500/api/libros";
+      ? `http://172.23.235.80:3500/api/libros/${libroActualId}`
+      : "http://172.23.235.80ocalhost:3500/api/libros";
       
     const method = libroActualId ? "PUT" : "POST";
 
@@ -50,7 +52,7 @@ formulario.addEventListener("submit", async (e) => {
 // Obtener libros
 async function obtenerLibros() {
   try {
-    const response = await fetch("http://localhost:3500/api/libros");
+    const response = await fetch("http://172.23.235.80localhost:3500/api/libros");
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -94,7 +96,7 @@ function mostrarLibros(libros) {
 // Función para editar libro
 window.editarLibro = async function(id) {
   try {
-    const response = await fetch(`http://localhost:3500/api/libros/${id}`);
+    const response = await fetch(`http://172.23.235.80:3500/api/libros/${id}`);
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     
     const libro = await response.json();
@@ -124,7 +126,7 @@ window.eliminarLibro = async function(id) {
   if (!confirm("¿Estás seguro de eliminar este libro?")) return;
   
   try {
-    const response = await fetch(`http://localhost:3500/api/libros/${id}`, {
+    const response = await fetch(`http://172.23.235.80:3500/api/libros/${id}`, {
       method: "DELETE"
     });
     
@@ -154,4 +156,15 @@ function mostrarMensaje(accion) {
   setTimeout(() => {
     mensaje.remove();
   }, 3050);
+}
+
+// Función para verificar la conexión
+async function testAPI() {
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        console.log('API Status:', data);
+    } catch (error) {
+        console.error('Error conectando con la API:', error);
+    }
 }

@@ -20,6 +20,21 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/status', (req, res) => {
+    res.json({
+        message: '¡API funcionando correctamente! 🚀',
+        status: 'online',
+        timestamp: new Date().toISOString(),
+        endpoints: {
+            libros: '/api/libros',
+            status: '/status'
+        },
+        cors: {
+            origin: 'http://172.23.235.80:5500'
+        }
+    });
+});
+
 // Conexión a MongoDB usando variable de entorno
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/bibliotecaPersonal';
 mongoose.connect(mongoURI)
