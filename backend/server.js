@@ -26,7 +26,7 @@ app.get('*', (req, res) => {
 });
 
 // Iniciar servidor
-const PORT = 3050;
+const PORT = 3500;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor: http://localhost:${PORT}`);
   console.log(`📚 API: http://localhost:${PORT}/api/libros`);
